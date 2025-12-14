@@ -1,4 +1,4 @@
-## Installation & Configuration (DBA Responsibility)
+## Installation & Configuration
 
 This project proves DBA ownership of:
 - Database engine installation

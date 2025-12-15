@@ -1,0 +1,38 @@
+ BACKUP AND RESTORES
+mysqldump -u root -p \
+--databases drugservice_staging \
+--single-transaction \
+--routines \
+--events \
+> drugservice_staging_backup.sql
+
+--single transaction meaning consistent back-up without locking tables
+--routines include stored procedures
+--events include scheduled events
+
+and then verify backup by 'ls -lh drugservice_staging_backup.sql'
+
+2. Restores
+firstly create an empty database in workbench
+CREATE DATABASE drugservice_staging;
+ 
+and then restore from backup
+mysql -u root -p drugservice_staging < drugservice_staging_backup.sql
+
+    THEN;
+USE drugservice_staging;
+
+-- Confirm tables exist
+SHOW TABLES;
+
+-- Confirm data restored
+SELECT COUNT(*) FROM drugs;
+SELECT COUNT(*) FROM facilities;
+
+-- Spot check controlled drugs
+SELECT drug_name
+FROM drugs
+WHERE is_controlled = TRUE;
+
+
+

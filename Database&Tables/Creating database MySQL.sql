@@ -55,29 +55,29 @@ from facilities;
 -- create staging database
 
 CREATE DATABASE drugservice_staging;
-CREATE TABLE drugs_staging
-LIKE drugs;
+CREATE TABLE drugservice_staging.drug_staging
+LIKE drugservice.drugs;
 
 select*
-from drugs_staging;
+from drug_staging;
 
-INSERT INTO drugs_staging
+INSERT INTO drugservice_staging.drug_staging
 select  *
-from drugs;
+from drugservice.drugs;
 
 select *
-from drugs_staging;
+from drug_staging;
 
 -- creating the second table
-CREATE TABLE facilities_staging
-LIKE facilities;
+CREATE TABLE drugservice_staging.facilities_staging
+LIKE drugservice.facilities;
 
 SELECT *
 FROM facilities_staging;
 
-INSERT INTO facilities_staging
+INSERT INTO drugservice_staging.facilities_staging
 select*
-from facilities;
+from drugservice.facilities;
 
 select *
 from facilities_staging;
